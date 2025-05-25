@@ -11,6 +11,7 @@ import {
 	GoShieldCheck,
 	GoSync,
 } from "react-icons/go";
+import { useNavigate } from "react-router";
 
 function InfoBox({
 	icon,
@@ -34,7 +35,7 @@ function InfoBox({
 					{icon}
 					<p className="text-xl">{title}</p>
 				</div>
-				<p className="text-secondary-text">{description}</p>
+				<p className="text-text-secondary">{description}</p>
 			</div>
 		</motion.div>
 	);
@@ -54,8 +55,10 @@ export function Landing() {
 		}
 	};
 
+	const navigate = useNavigate();
+
 	return (
-		<div className="bg-background w-full h-full text-text">
+		<div className="w-full h-full text-text-title">
 			<div className="w-full flex flex-col items-center pt-20">
 				<motion.p
 					className="text-8xl font-bold"
@@ -92,11 +95,19 @@ export function Landing() {
 					}}
 					className="mt-8 flex flex-row gap-4"
 				>
-					<div className="px-4 py-2 flex flex-row items-center gap-2 bg-surface border-border border-1 cursor-pointer rounded select-none hover:bg-surface-hover active:bg-surface-active transition-colors">
+					<div
+						className="px-4 py-2 flex flex-row items-center gap-2 bg-surface border-border border-1 cursor-pointer rounded select-none hover:bg-surface-hover active:bg-surface-active transition-colors"
+						onClick={() => navigate("/docs/")}
+						onKeyDown={() => navigate("/docs/")}
+					>
 						<GoRepo />
 						Documentation
 					</div>
-					<div className="px-4 py-2 flex flex-row items-center gap-2 bg-primary hover:bg-primary-hover active:bg-primary-active transition-colors cursor-pointer rounded select-none">
+					<div
+						className="px-4 py-2 flex flex-row items-center gap-2 bg-primary hover:bg-primary-hover active:bg-primary-active transition-colors cursor-pointer rounded select-none"
+						onClick={() => navigate("/docs/getting-started")}
+						onKeyDown={() => navigate("/docs/getting-started")}
+					>
 						<GoPaperAirplane />
 						Getting Started
 					</div>

@@ -12,8 +12,9 @@
   --color-primary-hover: #2c5282;
   --color-primary-active: #2a4365;
 
-  --color-text: #f5f5f7;
-  --color-secondary-text: #a5a5a7;
+  --color-text: #bcbdaf;
+  --color-text-title: #dcdddf;
+  --color-text-secondary: #a5a5a7;
 }
 
 #root {
@@ -22,12 +23,45 @@
 
 html {
   height: 100%;
-  background-color: #0b1012;
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
 
 body {
   height: 100%;
 }
+
+h1 {
+  font-size: x-large;
+  font-weight: bold;
+
+}
+
+h2 {
+  font-size: larger;
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+hr {
+  color: var(--color-border);
+  margin: 1rem 0;
+}
+
+pre:has(code) {
+  margin: 0.5rem 0;
+}
+
+code {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  border-width: 1px;
+  border-style: solid;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+/* Landing Page */
 
 #cards:hover > .card::after {
   opacity: 1;
