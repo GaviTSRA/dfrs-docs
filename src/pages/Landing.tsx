@@ -47,7 +47,9 @@ export function Landing() {
 			const x = e.clientX - rect.left;
 			const y = e.clientY - rect.top;
 
+			// @ts-expect-error
 			card.style.setProperty("--mouse-x", `${x}px`);
+			// @ts-expect-error
 			card.style.setProperty("--mouse-y", `${y}px`);
 		}
 	};
