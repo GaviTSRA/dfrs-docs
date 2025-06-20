@@ -1,0 +1,24 @@
+import { CodeBlock } from "../../components/Codeblock";
+
+# DFRS Basics
+
+This section will teach you the basics of dfrs.
+
+## Example
+
+A very simple dfrs program might look like this:
+
+<CodeBlock
+  code={`
+@join {
+    p:all.sendMessage("[green]+ %default");
+}
+
+@killPlayer {
+    line victim = v.string($victim:name);
+    ifv stringMatches(victim, king) {
+        assignNewKing($killer:name);
+    }
+}
+`}
+/>

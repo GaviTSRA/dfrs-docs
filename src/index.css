@@ -2,7 +2,7 @@
 
 @theme {
   --color-background: #0b1012;
-  
+
   --color-surface: #111517;
   --color-surface-hover: #1a1f21;
   --color-surface-active: #0d1012;
@@ -12,8 +12,8 @@
   --color-primary-hover: #2c5282;
   --color-primary-active: #2a4365;
 
-  --color-text: #bcbdaf;
-  --color-text-title: #dcdddf;
+  --color-text: #dcdddf;
+  --color-text-darker: #bcbdaf;
   --color-text-secondary: #a5a5a7;
 }
 
@@ -34,7 +34,6 @@ body {
 h1 {
   font-size: x-large;
   font-weight: bold;
-
 }
 
 h2 {
@@ -50,9 +49,6 @@ hr {
 
 pre:has(code) {
   margin: 0.5rem 0;
-}
-
-code {
   background: var(--color-surface);
   border-color: var(--color-border);
   border-width: 1px;
@@ -69,8 +65,8 @@ code {
 
 .card {
   cursor: pointer;
-  width: 25vw;
-  height: 22vh;  
+  width: 30rem;
+  height: 8rem;
   position: relative;
 }
 
@@ -93,16 +89,16 @@ code {
 
 .card::before {
   background: radial-gradient(
-    800px circle at var(--mouse-x) var(--mouse-y), 
+    800px circle at var(--mouse-x) var(--mouse-y),
     rgba(255, 255, 255, 0.08),
     transparent 40%
   );
   z-index: 3;
 }
 
-.card::after {  
+.card::after {
   background: radial-gradient(
-    600px circle at var(--mouse-x) var(--mouse-y), 
+    600px circle at var(--mouse-x) var(--mouse-y),
     rgba(255, 255, 255, 0.3),
     transparent 40%
   );
