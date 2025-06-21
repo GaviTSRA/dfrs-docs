@@ -1,0 +1,27 @@
+import { CodeBlock } from "../../components/Codeblock";
+
+# Events
+Event codelines can be created like this:
+<CodeBlock
+  code={`@join {
+    // ...  
+}
+`}/>
+    
+There is no difference between player and entity events:
+<CodeBlock
+  code={`@swapHands {
+    // ...  
+}
+@entityDeath {
+    // ...
+}
+`}/>
+<br/>
+## LS-Cancel
+You can declare events as being LS-Canceled like this:
+<CodeBlock
+  code={`@swapHands! {
+    // ...
+}
+`}/>

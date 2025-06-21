@@ -7,6 +7,7 @@
   --color-surface-hover: #1a1f21;
   --color-surface-active: #0d1012;
   --color-border: #1d2628;
+  --color-border-hover: #2a2f2f;
 
   --color-primary: #2b6cb0;
   --color-primary-hover: #2c5282;
@@ -34,12 +35,14 @@ body {
 h1 {
   font-size: x-large;
   font-weight: bold;
+  color: #fff;
 }
 
 h2 {
   font-size: larger;
   font-weight: 700;
   margin-top: 0.25rem;
+  color: #ddd;
 }
 
 hr {
