@@ -59,9 +59,11 @@ const sections: Section[] = [
 function SectionList({
 	section,
 	pathPrefix,
+	depth,
 }: {
 	section: Section;
 	pathPrefix?: string;
+	depth: number;
 }) {
 	const navigate = useNavigate();
 	const { section: path } = useParams();
@@ -87,6 +89,14 @@ function SectionList({
 		}
 	}, [path, pathPrefix, section]);
 
+	let textSize = "text-xl";
+	if (depth === 2) {
+		textSize = "text-base";
+	}
+	if (depth > 2) {
+		textSize = "text-sm";
+	}
+
 	return (
 		<div>
 			<motion.div
@@ -94,7 +104,7 @@ function SectionList({
 				className="flex flex-row items-center gap-1 select-none"
 			>
 				<p
-					className={`cursor-pointer text-base transition duration-300 ${selected ? "text-white hover:text-text-title font-semibold" : "text-text-title hover:text-text-secondary"}`}
+					className={`cursor-pointer text-base transition duration-300 ${selected ? "text-white hover:text-text-title font-semibold" : "text-text-title hover:text-text-secondary"} ${textSize}`}
 					onClick={() => {
 						setCollapsed(false);
 						navigate(
@@ -143,10 +153,14 @@ function SectionList({
 									pathPrefix={
 										pathPrefix ? `${pathPrefix}.${section.id}` : section.id
 									}
+									depth={depth + 1}
 								/>
 							</motion.div>
 						);
 					})}
+				{section.children?.length && !collapsed && (
+					<div className="h-2 border-border-hover border-l-1" />
+				)}
 			</AnimatePresence>
 		</div>
 	);
@@ -180,7 +194,7 @@ export function Docs() {
 		<div className="grid grid-cols-[1fr_6fr] h-full gap-4">
 			<div className="bg-surface h-full p-2 text-lg border-r-1 border-border">
 				{sections.map((section) => (
-					<SectionList key={section.id} section={section} />
+					<SectionList key={section.id} section={section} depth={1} />
 				))}
 			</div>
 			<div>{Component ? <Component /> : <p>Not found</p>}</div>
