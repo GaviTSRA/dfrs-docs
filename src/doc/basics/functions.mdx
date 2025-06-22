@@ -1,0 +1,25 @@
+import { CodeBlock } from "../../components/Codeblock";
+
+# Functions
+Basic functions can be created using the **fn** keyword:
+<CodeBlock code={`fn functionName() {
+    // ...
+}
+`}/>
+<br/>
+## Arguments
+Functions can take arguments with types:
+<CodeBlock code={`fn functionName(arg1: any, arg2: number, arg3: string) {
+    // ...
+}
+`}/>
+These arguments can be optional...
+<CodeBlock code={`fn functionName(arg1: text?) {
+    // ...
+}
+`}/>
+... and support multiple values:
+<CodeBlock code={`fn functionName(arg1: location*) {
+    // ...
+}
+`}/>

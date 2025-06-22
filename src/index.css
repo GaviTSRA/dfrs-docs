@@ -50,6 +50,11 @@ hr {
   margin: 1rem 0;
 }
 
+ul {
+  list-style: disc;
+  padding-left: 1rem;
+}
+
 pre:has(code) {
   margin: 0.5rem 0;
   background: var(--color-surface);

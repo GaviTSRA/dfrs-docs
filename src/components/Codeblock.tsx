@@ -1,5 +1,18 @@
 import { useEffect, useState } from "react";
 import { createHighlighter } from "shiki";
+import dfrs from "./dfrs.tmLanguage.json";
+
+let highlighter: Awaited<ReturnType<typeof createHighlighter>>;
+
+async function getHighlighter() {
+	if (!highlighter) {
+		highlighter = await createHighlighter({
+			themes: ["dark-plus"],
+			langs: [dfrs],
+		});
+	}
+	return highlighter;
+}
 
 export function CodeBlock({
 	className = "",
@@ -11,19 +24,8 @@ export function CodeBlock({
 	const [html, setHtml] = useState("");
 	const lang = className.replace(/^language-/, "") || "dfrs";
 
-	console.info(code);
-
 	useEffect(() => {
-		async function highlight() {
-			const dfrs = await fetch("/dfrs-docs/dfrs.tmLanguage.json").then((res) =>
-				res.json(),
-			);
-
-			const highlighter = await createHighlighter({
-				themes: ["dark-plus"],
-				langs: [dfrs],
-			});
-
+		getHighlighter().then((highlighter) => {
 			const html = highlighter.codeToHtml(code, {
 				lang,
 				theme: "dark-plus",
@@ -32,9 +34,7 @@ export function CodeBlock({
 				},
 			});
 			setHtml(html);
-		}
-
-		highlight();
+		});
 	}, [code, lang]);
 
 	// biome-ignore lint/security/noDangerouslySetInnerHtml: Required for code shiki

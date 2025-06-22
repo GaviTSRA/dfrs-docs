@@ -1,7 +1,9 @@
 import { useNavigate, useParams } from "react-router";
-import { lazy, Suspense, useEffect, useState } from "react";
+import { useEffect, useState, type JSX } from "react";
 
-const pages = import.meta.glob("../doc/**/*.mdx");
+const pages: {
+	[path: string]: { default: JSX.Element };
+} = import.meta.glob("../doc/**/*.mdx", { eager: true });
 import { GoChevronDown, GoChevronUp } from "react-icons/go";
 import { AnimatePresence, motion } from "motion/react";
 
@@ -23,6 +25,18 @@ const sections: Section[] = [
 			{
 				id: "events",
 				title: "Events",
+			},
+			{
+				id: "functions",
+				title: "Functions",
+			},
+			{
+				id: "processes",
+				title: "Processes",
+			},
+			{
+				id: "actions",
+				title: "Actions",
 			},
 		],
 	},
@@ -140,9 +154,7 @@ function SectionList({
 
 export function Docs() {
 	const { section } = useParams();
-	const [Component, setComponent] = useState<React.LazyExoticComponent<
-		React.ComponentType<any>
-	> | null>(null);
+	const [Component, setComponent] = useState<React.ComponentType | null>(null);
 
 	useEffect(() => {
 		if (!section) {
@@ -154,10 +166,11 @@ export function Docs() {
 		const fullPath = pages[`${basePath}.mdx`]
 			? `${basePath}.mdx`
 			: `${basePath}/index.mdx`;
-		const loader = pages[fullPath];
 
-		if (loader) {
-			setComponent(() => lazy(loader));
+		const mod = pages[fullPath];
+
+		if (mod?.default) {
+			setComponent(() => mod.default);
 		} else {
 			setComponent(null);
 		}
@@ -170,11 +183,7 @@ export function Docs() {
 					<SectionList key={section.id} section={section} />
 				))}
 			</div>
-			<div>
-				<Suspense fallback={<p>Loading...</p>}>
-					{Component ? <Component /> : <p>Not found</p>}
-				</Suspense>
-			</div>
+			<div>{Component ? <Component /> : <p>Not found</p>}</div>
 		</div>
 	);
 }
