@@ -7,15 +7,28 @@ TODO
 
 ---
 
-# Project Structure
+# Project Setup
 You can create a new project by running
 ```
 dfrs init <path>
 ```
 This will create the config file in the given directory.
-
+ 
 ## Config file
 TODO
 
 ## Code files
-TODO
+To get started creating your game, simply create a new file name `<name>.dfrs`.
+The name of this file can be anything you want, but it's best to use a name that describes the function of the code in that file. You can use any number of files for your project, so don't be afraid to split code into multiple files to stay organized.
+
+## Coding
+The next step is to code the logic for your game. 
+In dfrs, your code is structured in blocks, each corresponding either to an event, function or process codeline on DiamondFire. Inside each of these you have the corresponding instruction, which get converted to the blocks of the codeline. For more info about the syntax please see the later chapters.   
+You can also find multiple examples on how to use DFRS <a href="https://github.com/GaviTSRA/dfrs/tree/master/examples">here</a>.
+
+## Compiling
+After you have created an event, function or process in your code and you want to test it on DiamondFire, you can run this command to compile your code:
+```
+dfrs compile <file>
+```
+This will convert your code into a DiamondFire template and then transport it according to your config. If you have set your config to `codeclient-place` for example, it will use the CodeClient API to directly place your code ingame, after you have authorized the applicatiton using `/auth` ingame.

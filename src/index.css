@@ -1,122 +1,155 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #0b1012;
+	--color-background: #0b1012;
 
-  --color-surface: #111517;
-  --color-surface-hover: #1a1f21;
-  --color-surface-active: #0d1012;
-  --color-border: #1d2628;
-  --color-border-hover: #2a2f2f;
+	--color-surface: #111517;
+	--color-surface-hover: #1a1f21;
+	--color-surface-active: #0d1012;
+	--color-border: #1d2628;
+	--color-border-hover: #2a2f2f;
 
-  --color-primary: #2b6cb0;
-  --color-primary-hover: #2c5282;
-  --color-primary-active: #2a4365;
+	--color-primary: #2b6cb0;
+	--color-primary-hover: #2c5282;
+	--color-primary-active: #2a4365;
 
-  --color-text: #dcdddf;
-  --color-text-darker: #bcbdaf;
-  --color-text-secondary: #a5a5a7;
+	--color-warn: #ff5c00;
+
+	--color-text: #dcdddf;
+	--color-text-darker: #bcbdaf;
+	--color-text-secondary: #a5a5a7;
+
+	--color-text-dark: #000000;
 }
 
 #root {
-  height: 100%;
+	height: 100%;
 }
 
 html {
-  height: 100%;
-  background-color: var(--color-background);
-  color: var(--color-text);
+	height: 100%;
+	background-color: var(--color-background);
+	color: var(--color-text);
 }
 
 body {
-  height: 100%;
+	height: 100%;
 }
 
 h1 {
-  font-size: x-large;
-  font-weight: bold;
-  color: #fff;
+	font-size: x-large;
+	font-weight: bold;
+	color: #fff;
+}
+h1:not(:first) {
+	margin-top: 1.5rem;
 }
 
 h2 {
-  font-size: larger;
-  font-weight: 700;
-  margin-top: 0.25rem;
-  color: #ddd;
+	font-size: larger;
+	font-weight: 700;
+	margin-top: 1rem;
+	color: #ddd;
+}
+h2:not(:first) {
+	margin-top: 1rem;
 }
 
 hr {
-  color: var(--color-border);
-  margin: 1rem 0;
+	color: var(--color-border);
+	margin: 1rem 0;
 }
 
 ul {
-  list-style: disc;
-  padding-left: 1rem;
+	list-style: disc;
+	padding-left: 1rem;
+}
+
+a {
+	text-decoration: underline;
+	color: var(--color-primary);
+}
+
+a:hover {
+	color: var(--color-primary-hover);
+}
+
+a:active {
+	color: var(--color-primary-active);
+}
+
+p > code {
+	font-family: monospace;
+	background: var(--color-surface);
+	border-color: var(--color-border);
+	border-width: 1px;
+	border-style: solid;
+	padding: 0.25rem 0.25rem;
+	border-radius: 0.25rem;
 }
 
 pre:has(code) {
-  margin: 0.5rem 0;
-  background: var(--color-surface);
-  border-color: var(--color-border);
-  border-width: 1px;
-  border-style: solid;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
+	margin: 0.5rem 0;
+	background: var(--color-surface);
+	border-color: var(--color-border);
+	border-width: 1px;
+	border-style: solid;
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.25rem;
 }
 
 /* Landing Page */
 
 #cards:hover > .card::after {
-  opacity: 1;
+	opacity: 1;
 }
 
 .card {
-  cursor: pointer;
-  width: 30rem;
-  height: 8rem;
-  position: relative;
+	cursor: pointer;
+	width: 30rem;
+	height: 8rem;
+	position: relative;
 }
 
 .card:hover::before {
-  opacity: 1;
+	opacity: 1;
 }
 
 .card::before,
 .card::after {
-  border-radius: inherit;
-  content: "";
-  height: 100%;
-  left: 0px;
-  opacity: 0;
-  position: absolute;
-  top: 0px;
-  transition: opacity 500ms;
-  width: 100%;
+	border-radius: inherit;
+	content: "";
+	height: 100%;
+	left: 0px;
+	opacity: 0;
+	position: absolute;
+	top: 0px;
+	transition: opacity 500ms;
+	width: 100%;
 }
 
 .card::before {
-  background: radial-gradient(
-    800px circle at var(--mouse-x) var(--mouse-y),
-    rgba(255, 255, 255, 0.08),
-    transparent 40%
-  );
-  z-index: 3;
+	background: radial-gradient(
+		800px circle at var(--mouse-x) var(--mouse-y),
+		rgba(255, 255, 255, 0.08),
+		transparent 40%
+	);
+	z-index: 3;
 }
 
 .card::after {
-  background: radial-gradient(
-    600px circle at var(--mouse-x) var(--mouse-y),
-    rgba(255, 255, 255, 0.3),
-    transparent 40%
-  );
-  z-index: 1;
+	background: radial-gradient(
+		600px circle at var(--mouse-x) var(--mouse-y),
+		rgba(255, 255, 255, 0.3),
+		transparent 40%
+	);
+	z-index: 1;
 }
 
 .card > .card-content {
-  background-color: var(--color-surface);
-  border-radius: inherit;
-  inset: 1px;
-  position: absolute;
-  z-index: 2;
+	background-color: var(--color-surface);
+	border-radius: inherit;
+	inset: 1px;
+	position: absolute;
+	z-index: 2;
 }

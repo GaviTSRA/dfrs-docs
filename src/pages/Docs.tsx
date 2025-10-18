@@ -192,12 +192,14 @@ export function Docs() {
 
 	return (
 		<div className="grid grid-cols-[1fr_6fr] h-full gap-4">
-			<div className="bg-surface h-full p-2 text-lg border-r-1 border-border">
+			<div className="bg-surface h-screen p-2 text-lg border-r-1 border-border">
 				{sections.map((section) => (
 					<SectionList key={section.id} section={section} depth={1} />
 				))}
 			</div>
-			<div>{Component ? <Component /> : <p>Not found</p>}</div>
+			<div className="h-screen max-h-screen overflow-auto">
+				{Component ? <Component /> : <p>Not found</p>}
+			</div>
 		</div>
 	);
 }

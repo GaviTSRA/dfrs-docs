@@ -2,9 +2,12 @@ import { motion } from "motion/react";
 import type React from "react";
 import type { JSX } from "react";
 import {
+	GoAlert,
+	GoClock,
 	GoCode,
 	GoEye,
 	GoGitMerge,
+	GoInfo,
 	GoPackage,
 	GoPaperAirplane,
 	GoRepo,
@@ -17,27 +20,37 @@ function InfoBox({
 	icon,
 	title,
 	description,
-	delay,
+	beta = false,
+	soon = false,
 }: {
 	icon: JSX.Element;
 	title: string;
 	description: string;
-	delay: number;
+	beta?: boolean;
+	soon?: boolean;
 }) {
 	return (
-		<motion.div
-			initial={{ opacity: 0, y: 100 }}
-			animate={{ opacity: 1, y: 0, transition: { delay } }}
-			className="bg-surface rounded-lg p-4 card w-full h-full border-border border-1"
-		>
+		<div className="bg-surface rounded-lg p-4 card w-full h-full border-border border-1">
 			<div className="card-content p-4">
 				<div className="flex flex-row items-center gap-2 mb-2">
 					{icon}
 					<p className="text-xl">{title}</p>
+					{beta && (
+						<div className="flex flex-row gap-1 ml-auto bg-warn text-text-dark items-center rounded-xl px-4 py-1">
+							<GoInfo strokeWidth={0.5} className="mt-[2.5px]" />
+							<p>Beta</p>
+						</div>
+					)}
+					{soon && (
+						<div className="flex flex-row gap-1 ml-auto bg-primary text-text-dark items-center rounded-xl px-4 py-1">
+							<GoClock strokeWidth={0.5} className="mt-[2.5px]" />
+							<p>Soon</p>
+						</div>
+					)}
 				</div>
 				<p className="text-text-secondary">{description}</p>
 			</div>
-		</motion.div>
+		</div>
 	);
 }
 
@@ -60,19 +73,7 @@ export function Landing() {
 	return (
 		<div className="w-full h-full text-text-title">
 			<div className="w-full flex flex-col items-center pt-20">
-				<motion.p
-					className="text-8xl font-bold"
-					initial={{
-						opacity: 0,
-						y: -50,
-					}}
-					animate={{
-						opacity: 1,
-						y: 0,
-					}}
-				>
-					DFRS
-				</motion.p>
+				<p className="text-8xl font-bold">DFRS</p>
 				<motion.p
 					initial={{
 						clipPath: "inset(0 100% 0 0)",
@@ -85,16 +86,7 @@ export function Landing() {
 				>
 					A DiamondFire Programming Language
 				</motion.p>
-				<motion.div
-					initial={{
-						clipPath: "inset(0 100% 0 0)",
-					}}
-					animate={{
-						clipPath: "inset(0 0% 0 0)",
-						transition: { delay: 5, duration: 0.5, ease: "easeOut" },
-					}}
-					className="mt-8 flex flex-row gap-4"
-				>
+				<div className="mt-8 flex flex-row gap-4">
 					<div
 						className="px-4 py-2 flex flex-row items-center gap-2 bg-surface border-border border-1 cursor-pointer rounded select-none hover:bg-surface-hover active:bg-surface-active transition-colors"
 						onClick={() => navigate("/docs/")}
@@ -109,48 +101,44 @@ export function Landing() {
 						<GoPaperAirplane />
 						Getting Started
 					</div>
-				</motion.div>
+				</div>
 			</div>
 			<div
 				id="cards"
 				onMouseMove={onMouseMove}
-				className="flex flex-row flex-wrap items-center  justify-center gap-2 mt-12 mx-20"
+				className="flex flex-row flex-wrap items-center justify-center gap-2 py-12 mx-20"
 			>
 				<InfoBox
 					icon={<GoEye size={25} />}
 					title="Quick Overview"
-					description="View all your code at a glance, without moving around an entire codespace or looking into chests"
-					delay={2}
+					description="View all your code at a glance, without having to move around a 3D codespace and look into chests"
 				/>
 				<InfoBox
 					icon={<GoSync size={25} />}
 					title="Easy Updates"
-					description="Quickly send updated code to DiamondFire using many integrated APIs such as CodeClient"
-					delay={2.5}
+					description="Quickly send updated code to DiamondFire using integrated APIs such as CodeClient"
 				/>
 				<InfoBox
 					icon={<GoShieldCheck size={25} />}
 					title="Robust Code"
-					description="Write solid code that never breaks using compile-time argument and typechecking"
-					delay={3}
+					description="Write code that never breaks using compile-time argument and type checks"
 				/>
 				<InfoBox
 					icon={<GoGitMerge size={25} />}
 					title="Version Control"
 					description="Use version control to improve developer experience and collaboration possibilities"
-					delay={3.5}
 				/>
 				<InfoBox
 					icon={<GoPackage size={25} />}
 					title="Libraries"
 					description="Easily create and use libraries to reuse code between projects"
-					delay={4}
+					soon
 				/>
 				<InfoBox
 					icon={<GoCode size={25} />}
 					title="IDE Integration"
-					description="Create games faster and easier using autocomplete and error highlighting"
-					delay={4.5}
+					description="Speed up development using autocomplete and error highlighting directly in your IDE"
+					beta
 				/>
 			</div>
 		</div>
