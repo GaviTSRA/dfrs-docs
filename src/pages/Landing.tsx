@@ -2,7 +2,6 @@ import { motion } from "motion/react";
 import type React from "react";
 import type { JSX } from "react";
 import {
-	GoAlert,
 	GoClock,
 	GoCode,
 	GoEye,
